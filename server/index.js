@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 // const users = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 // calling Schema
 let expensesModel = database.expensesModel;
@@ -23,7 +24,6 @@ app.use(
     extended: false,
   })
 );
-
 
 //app.use(express.static(__dirname + '/../front-end/dist'));
 // app.use(express.static('build'));
