@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "dev": "nodemon server/index.js",
     "server": "nodemon server",
-    "client": "npm start --prefix smak",
-    "dev": "concurrently \"npm run server\" \"npm run smak\"",
+    "smak": "npm start --prefix smak",
+    "start": "concurrently \"npm run server\" \"npm run smak\"",
     "heroku-posbuild": "NPM_CONDIG_PRODICTION=false npm install --prefix smak && npm run build --prefix smak"
   },
   "dependencies": {
