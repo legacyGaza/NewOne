@@ -1,27 +1,30 @@
 // Require mongoose
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 // Connecting mongoose
 mongoose
-  .connect("mongodb+srv://Khaled_20:258852@cluster0.gpjac.mongodb.net/test", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    'mongodb+srv://MhmdHourani:0597552045@bookfinder.actzs.mongodb.net/Expenses?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
-    console.log("connected");
+    console.log(' DB connected');
   })
   .catch((err) => {
-    console.log("Error while connecting to DB", err);
+    console.log('Error while connecting to DB', err);
   });
 
 // Create expensesSchema
 let expensesSchema = mongoose.Schema({
   expensesTypes: {
     type: String,
-    required: [true, "Please add some expensesTypes"],
+    required: [true, 'Please add some expensesTypes'],
   },
   amount: {
     type: Number,
-    required: [true, "Please add a positive or negative number"],
+    required: [true, 'Please add a positive or negative number'],
   },
   createdAt: {
     type: Date,
@@ -29,7 +32,7 @@ let expensesSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, "Please add some description"],
+    required: [true, 'Please add some description'],
   },
   first_name: {
     type: String,
@@ -42,19 +45,26 @@ let expensesSchema = mongoose.Schema({
     required: true,
   },
 });
+//////////////////////////////////////////////////////
 
-// Creating expensesModel
-let expensesModel = mongoose.model("expenses", expensesSchema);
+var newExpensesSchema = mongoose.Schema({
+  amount: {},
+  id: {},
+  array: [{}], /// datails about the expenses.
+});
 
-//Document and save function
-// let expDocu = new expensesModel({expensesTypes: "Khaled",amount: 100 ,createdAt:12/07/2020});
-// expDocu.save((err) => {
-//   if(err){
-//     console.log("err while save db" , err);
-//   }else{
-//     console.log("expensesDB saved");
-//   }
-//   });
+////////////////////////////////////////////////////////
+let UserSchema = mongoose.Schema({
+  first_name: { type: String },
+  last_name: { type: String },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+});
+
+let expensesModel = mongoose.model('expenses', expensesSchema);
+let users = mongoose.model('users', UserSchema);
 
 // Export expensesModel
 module.exports.expensesModel = expensesModel;
+module.exports.users = users;
