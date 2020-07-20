@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.js",
+    "start": "node server",
     "server": "nodemon server",
     "smak": "npm start --prefix smak",
-    "start": "concurrently \"npm run server\" \"npm run smak\"",
-    "heroku-posbuild": "NPM_CONDIG_PRODICTION=false npm install --prefix smak && npm run build --prefix smak"
+    "dev": "concurrently \"npm run server\" \"npm run smak\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix smak && npm run build --prefix smak"
   },
+,
   "dependencies": {
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
@@ -24,5 +25,8 @@
     "path": "^0.12.7"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
 }
